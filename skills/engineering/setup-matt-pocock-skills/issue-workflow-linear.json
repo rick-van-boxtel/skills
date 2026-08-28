@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "tracker": "linear",
+  "team": "REPLACE_WITH_LINEAR_TEAM",
+  "project": null,
+  "workTypes": {
+    "bug": { "label": "Bug" },
+    "feature": { "label": "Feature" },
+    "improvement": { "label": "Improvement" },
+    "documentation": { "label": "Documentation" }
+  },
+  "readinessStates": {
+    "needs-triage": { "status": "Backlog", "label": "Needs Triage" },
+    "needs-information": { "status": "Backlog", "label": "Needs Information" },
+    "needs-evidence": { "status": "Backlog", "label": "Needs Evidence" },
+    "ready-for-agent": { "status": "Todo", "label": null },
+    "ready-for-human": { "status": "Backlog", "label": "Ready for Human" },
+    "not-planned": { "status": "Canceled", "label": null }
+  },
+  "executionStatuses": ["In Progress", "In Review", "Done"]
+}
