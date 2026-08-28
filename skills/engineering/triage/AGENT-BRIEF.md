@@ -1,6 +1,6 @@
 # Writing Agent Briefs
 
-An agent brief is a structured comment posted on a GitHub issue or PR when it moves to `ready-for-agent`. It is the authoritative specification that an AFK agent will work from. The original body and discussion are context: the agent brief is the contract.
+An agent brief is a structured comment posted on the configured tracker issue or code-host pull request when it moves to the configured `ready-for-agent` role. It is the authoritative specification that an AFK agent will work from. The original body and discussion are context: the agent brief is the contract.
 
 The brief states **what the agent should do**, which stretches to both surfaces: for an issue, that's building the change from nothing; for a PR, it's what's left to do *to the existing diff*: finish it, close gaps, address review points. Same principles either way; the PR example below shows the difference.
 
@@ -29,7 +29,7 @@ Describe **what** the system should do, not **how** to implement it. The agent w
 
 The agent needs to know when it's done. Every agent brief must have concrete, testable acceptance criteria. Each criterion should be independently verifiable.
 
-- **Good:** "Running `gh issue list --label needs-triage` returns issues that have been through initial classification"
+- **Good:** "Listing issues in the configured `needs-triage` state returns only issues that have exactly one work type"
 - **Bad:** "Triage should work correctly"
 
 ### Explicit scope boundaries
@@ -41,12 +41,12 @@ State what is out of scope. This prevents the agent from gold-plating or making 
 ```markdown
 ## Agent Brief
 
-**Category:** bug / enhancement
+**Work type:** bug / feature / improvement / documentation
 **Summary:** one-line description of what needs to happen
 
 **Current behavior:**
 Describe what happens now. For bugs, this is the broken behavior.
-For enhancements, this is the status quo the feature builds on.
+For features and improvements, this is the status quo the request builds on.
 
 **Desired behavior:**
 Describe what should happen after the agent's work is complete.
@@ -104,16 +104,16 @@ and append "..." to indicate truncation.
 - Multi-line description support
 ```
 
-### Good agent brief (enhancement)
+### Good agent brief (improvement)
 
 ```markdown
 ## Agent Brief
 
-**Category:** enhancement
+**Work type:** improvement
 **Summary:** Add `.out-of-scope/` directory support for tracking rejected feature requests
 
 **Current behavior:**
-When a feature request is rejected, the issue is closed with a `wontfix` label
+When a feature request is rejected, the issue moves to the configured `not-planned` state
 and a comment. There is no persistent record of the decision or reasoning.
 Future similar requests require the maintainer to recall or search for the
 prior discussion.
@@ -132,7 +132,7 @@ checked for matches.
   and match incoming issues against them by concept similarity
 
 **Acceptance criteria:**
-- [ ] Closing a feature as wontfix creates/updates a file in `.out-of-scope/`
+- [ ] Marking a feature as not planned creates or updates a file in `.out-of-scope/`
 - [ ] The file includes the decision, reasoning, and link to the closed issue
 - [ ] If a matching `.out-of-scope/` file already exists, the new issue is
       appended to its "Prior requests" list rather than creating a duplicate
@@ -142,7 +142,7 @@ checked for matches.
 **Out of scope:**
 - Automated matching (human confirms the match)
 - Reopening previously rejected features
-- Bug reports (only enhancement rejections go to `.out-of-scope/`)
+- Bug reports (only rejected features, improvements, and documentation requests go to `.out-of-scope/`)
 ```
 
 ### Good agent brief (PR)
@@ -152,7 +152,7 @@ For a PR, "Current behavior" describes the state of the diff, and the brief asks
 ```markdown
 ## Agent Brief
 
-**Category:** enhancement
+**Work type:** feature
 **Summary:** Finish the contributor's `--json` output flag for `triage list`
 
 **Current behavior:**
