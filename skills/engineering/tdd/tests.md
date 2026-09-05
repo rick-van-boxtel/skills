@@ -20,11 +20,13 @@ Characteristics:
 - Uses public API only
 - Survives internal refactors
 - Describes WHAT, not HOW
-- One logical assertion per test
+- Assertions that protect one coherent behavior
 
 ## Bad Tests
 
-**Implementation-detail tests**: Coupled to internal structure.
+**Implementation-detail tests**: Coupled to internal structure. The examples below
+assume the observable contract is the user result. Database state or call order
+can be valid evidence when persistence or an external protocol is itself the contract.
 
 ```typescript
 // BAD: Tests implementation details
@@ -39,7 +41,7 @@ Red flags:
 
 - Mocking internal collaborators
 - Testing private methods
-- Asserting on call counts/order
+- Asserting on incidental call counts/order rather than required protocol behavior
 - Test breaks when refactoring without behavior change
 - Test name describes HOW not WHAT
 - Verifying through external means instead of interface

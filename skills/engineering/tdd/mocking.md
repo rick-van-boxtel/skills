@@ -1,17 +1,15 @@
 # When to Mock
 
-Mock at **system boundaries** only:
+Prefer mocks at **system boundaries**:
 
 - External APIs (payment, email, etc.)
 - Databases (sometimes - prefer test DB)
 - Time/randomness
 - File system (sometimes)
 
-Don't mock:
-
-- Your own classes/modules
-- Internal collaborators
-- Anything you control
+Avoid mocking internal collaborators when it would bypass the behavior under test.
+A focused test double can be appropriate when the real composition is covered
+elsewhere or the boundary requires controlled failures.
 
 ## Designing for Mockability
 
@@ -36,7 +34,8 @@ function processPayment(order) {
 
 **2. Prefer SDK-style interfaces over generic fetchers**
 
-Create specific functions for each external operation instead of one generic function with conditional logic:
+An existing operation-specific interface can simplify a test. Add production
+wrappers only when real callers or an external boundary need them:
 
 ```typescript
 // GOOD: Each function is independently mockable
