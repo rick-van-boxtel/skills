@@ -6,10 +6,10 @@ disable-model-invocation: true
 
 Implement the work described by the user in the spec or tickets.
 
-Use /tdd where possible, at pre-agreed seams.
+Use the available tdd skill where test-first implementation adds useful evidence. Choose an existing meaningful seam from the accepted behavior; ask only when a consequential interface or behavior decision remains unresolved.
 
-Run typechecking regularly, single test files regularly, and the full test suite once at the end.
+Follow the repository's isolation, implementation, verification, and release policy. Use focused checks while iterating and complete its applicable gates.
 
-Once done, use /code-review to review the work.
+Use the available code-review skill within the repository's reviewer and convergence policy.
 
-Commit your work to the current branch.
+Commit on the authorized task branch when required by the repository workflow.

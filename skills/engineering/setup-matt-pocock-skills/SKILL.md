@@ -1,6 +1,6 @@
 ---
 name: setup-matt-pocock-skills
-description: "Configure this repo for the engineering skills: set up its issue tracker, issue workflow roles, and domain doc layout. Run once before first use of the other engineering skills."
+description: "Configure a repository's issue tracker, readiness mapping, and domain-document routes when setup is explicitly requested."
 disable-model-invocation: true
 ---
 
@@ -80,11 +80,16 @@ Show the user a draft of:
 - The `## Agent skills` block to add to whichever of `CLAUDE.md` / `AGENTS.md` is being edited (see step 4 for selection rules)
 - The contents of `docs/agents/issue-tracker.md`, `docs/agents/domain.md`, and `docs/agents/issue-workflow.json` (the last only when `triage` is installed)
 
-Let them edit before writing.
+Honor choices and approvals already provided in the request or conversation. Ask only for an unresolved material configuration choice; do not repeat approval for the same reviewed draft.
 
 ### 4. Write
 
-**Pick the file to edit:**
+**Preserve the repository entrypoint contract:**
+
+- Follow an existing repository policy for paired instruction files and router layout. When both files must match, update both byte-for-byte and use the existing route structure instead of adding a legacy section.
+- Preserve an existing `docs/agents/issue-workflow.json` when triage is not installed; skipping setup is not permission to remove valid configuration.
+
+**Without an existing entrypoint policy, pick the file to edit:**
 
 - If `CLAUDE.md` exists, edit it.
 - Else if `AGENTS.md` exists, edit it.

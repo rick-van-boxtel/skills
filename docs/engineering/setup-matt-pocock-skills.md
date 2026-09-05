@@ -61,7 +61,7 @@ Asked directly after v1.1, Matt said yes. The skill's own closing message is sof
 
 **It wrote to `CLAUDE.md`, but I'm on Codex.**
 
-Known gap, still open. The file-selection rule is "edit `CLAUDE.md` if it exists, else `AGENTS.md`": it checks which file exists, not which [harness](https://www.aihero.dev/ai-coding-dictionary/harness) is running. A repo with a `CLAUDE.md` left over from Claude Code will get its `## Agent skills` block somewhere Codex never reads. Two workarounds are in circulation: move the block to `AGENTS.md` by hand, or keep `AGENTS.md` canonical and make `CLAUDE.md` a one-line pointer at it. If neither file exists, the skill asks you which to create rather than picking, which has confused people who expected it to just decide.
+Setup follows the repository's existing entrypoint policy. If AGENTS and CLAUDE must remain identical, it updates both with the existing router structure. The legacy single-file choice is only a fallback when the repository defines no policy.
 
 **What happens when configured labels or statuses do not exist?**
 
@@ -82,7 +82,7 @@ One long-standing complaint says yes, in these words: *"having a skill to set up
 ## It's working if
 
 - `docs/agents/issue-tracker.md` and `docs/agents/domain.md` exist, plus a validated `issue-workflow.json` if `triage` is installed.
-- An `## Agent skills` section appears in the instruction file your harness actually reads, with a one-line summary pointing at each of those files.
+- The instruction entrypoints your repository uses link to the configuration without breaking their existing layout or parity policy.
 - The configured tracker matches where you really plan work, even when code is hosted elsewhere.
 - Every configured label and status was checked against the live tracker before setup completed.
 - Afterwards, `/to-tickets` publishes without asking you where issues live, and `/triage` resolves roles rather than inventing labels.
